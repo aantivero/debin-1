@@ -1,0 +1,72 @@
+<div>
+    <h2>
+        <span jhiTranslate="debin1App.aliasCBU.home.title">Alias CBUS</span>
+        <button class="btn btn-primary float-right create-alias-cbu" [routerLink]="['/', { outlets: { popup: ['alias-cbu-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="debin1App.aliasCBU.home.createLabel">
+            Create new Alias CBU
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="aliasCBUS">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="cbu"><span jhiTranslate="debin1App.aliasCBU.cbu">Cbu</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="sucursal.id"><span jhiTranslate="debin1App.aliasCBU.sucursal">Sucursal</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="banco.id"><span jhiTranslate="debin1App.aliasCBU.banco">Banco</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="user.login"><span jhiTranslate="debin1App.aliasCBU.user">User</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let aliasCBU of aliasCBUS ;trackBy: trackId">
+                <td><a [routerLink]="['../alias-cbu', aliasCBU.id ]">{{aliasCBU.id}}</a></td>
+                <td>{{aliasCBU.cbu}}</td>
+                <td>
+                    <div *ngIf="aliasCBU.sucursal">
+                        <a [routerLink]="['../sucursal', aliasCBU.sucursal?.id ]" >{{aliasCBU.sucursal?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="aliasCBU.banco">
+                        <a [routerLink]="['../banco', aliasCBU.banco?.id ]" >{{aliasCBU.banco?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    {{aliasCBU.user?.login}}
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../alias-cbu', aliasCBU.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'alias-cbu/'+ aliasCBU.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'alias-cbu/'+ aliasCBU.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

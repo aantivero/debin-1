@@ -1,0 +1,24 @@
+{
+    "debin1App": {
+        "aliasCBU" : {
+            "home": {
+                "title": "Alias CBUS",
+                "createLabel": "Crear nuevo Alias CBU",
+                "createOrEditLabel": "Crear o editar Alias CBU"
+            },
+            "created": "Un nuevo Alias CBU ha sido creado con el identificador {{ param }}",
+            "updated": "Un Alias CBU ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Alias CBU ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Alias CBU {{ id }}?"
+            },
+            "detail": {
+                "title": "Alias CBU"
+            },
+            "cbu": "Cbu",
+            "sucursal": "Sucursal",
+            "banco": "Banco",
+            "user": "User"
+        }
+    }
+}

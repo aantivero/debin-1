@@ -1,0 +1,41 @@
+
+<div *ngIf="aliasCBU">
+    <h2><span jhiTranslate="debin1App.aliasCBU.detail.title">Alias CBU</span> {{aliasCBU.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="debin1App.aliasCBU.cbu">Cbu</span></dt>
+        <dd>
+            <span>{{aliasCBU.cbu}}</span>
+        </dd>
+        <dt><span jhiTranslate="debin1App.aliasCBU.sucursal">Sucursal</span></dt>
+        <dd>
+            <div *ngIf="aliasCBU.sucursal">
+                <a [routerLink]="['/sucursal', aliasCBU.sucursal?.id]">{{aliasCBU.sucursal?.id}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="debin1App.aliasCBU.banco">Banco</span></dt>
+        <dd>
+            <div *ngIf="aliasCBU.banco">
+                <a [routerLink]="['/banco', aliasCBU.banco?.id]">{{aliasCBU.banco?.id}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="debin1App.aliasCBU.user">User</span></dt>
+        <dd>
+            {{aliasCBU.user?.login}}
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'alias-cbu/'+ aliasCBU.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

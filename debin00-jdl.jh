@@ -9,11 +9,11 @@ entity Sucursal {
 }
 
 relationship OneToMany {
-	Banco{denominacion} to Sucursal{denominacion}
+	Banco{sucursal} to Sucursal{banco}
 }
 
 entity AliasCBU {
-	cbu Integer required minlength(22) maxlength(22)
+	cbu String required minlength(22) maxlength(22) pattern("[0-9]+")
 }
 
 relationship OneToOne {
@@ -27,6 +27,4 @@ relationship ManyToOne {
 
 paginate Banco, Sucursal with pagination
 paginate AliasCBU with infinite-scroll
-dto * with mapstruct
-service all with serviceImpl
 

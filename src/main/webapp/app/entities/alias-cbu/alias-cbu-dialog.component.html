@@ -1,0 +1,72 @@
+
+
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myAliasCBULabel" jhiTranslate="debin1App.aliasCBU.home.createOrEditLabel">Create or edit a Alias CBU</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!aliasCBU.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="aliasCBU.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="debin1App.aliasCBU.cbu" for="field_cbu">Cbu</label>
+            <input type="text" class="form-control" name="cbu" id="field_cbu"
+                [(ngModel)]="aliasCBU.cbu"
+            required minlength="22" maxlength="22" pattern="[0-9]+" />
+            <div [hidden]="!(editForm.controls.cbu?.dirty && editForm.controls.cbu?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.cbu?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.cbu?.errors?.minlength" jhiTranslate="entity.validation.minlength" translateValues="{ min: 22 }">
+                   This field is required to be at least 22 characters.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.cbu?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 22 }">
+                   This field cannot be longer than 22 characters.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.cbu?.errors?.pattern" jhiTranslate="entity.validation.pattern" translateValues="{ pattern: '[0-9]+' }">
+                    This field should follow pattern "[0-9]+".
+                </small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label jhiTranslate="debin1App.aliasCBU.sucursal" for="field_sucursal">Sucursal</label>
+            <select class="form-control" id="field_sucursal" name="sucursal" [(ngModel)]="aliasCBU.sucursal">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="sucursalOption.id === aliasCBU.sucursal?.id ? aliasCBU.sucursal : sucursalOption" *ngFor="let sucursalOption of sucursals; trackBy: trackSucursalById">{{sucursalOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="debin1App.aliasCBU.banco" for="field_banco">Banco</label>
+            <select class="form-control" id="field_banco" name="banco" [(ngModel)]="aliasCBU.banco">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="bancoOption.id === aliasCBU.banco?.id ? aliasCBU.banco : bancoOption" *ngFor="let bancoOption of bancos; trackBy: trackBancoById">{{bancoOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="debin1App.aliasCBU.user" for="field_user">User</label>
+            <select class="form-control" id="field_user" name="user" [(ngModel)]="aliasCBU.user" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="userOption.id === aliasCBU.user?.id ? aliasCBU.user : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

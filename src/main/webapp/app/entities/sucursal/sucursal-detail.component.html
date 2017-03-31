@@ -1,0 +1,35 @@
+
+<div *ngIf="sucursal">
+    <h2><span jhiTranslate="debin1App.sucursal.detail.title">Sucursal</span> {{sucursal.denominacion}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="debin1App.sucursal.denominacion">Denominacion</span></dt>
+        <dd>
+            <span>{{sucursal.denominacion}}</span>
+        </dd>
+        <dt><span jhiTranslate="debin1App.sucursal.codigo">Codigo</span></dt>
+        <dd>
+            <span>{{sucursal.codigo}}</span>
+        </dd>
+        <dt><span jhiTranslate="debin1App.sucursal.banco">Banco</span></dt>
+        <dd>
+            <div *ngIf="sucursal.banco">
+                <a [routerLink]="['/banco', sucursal.banco?.id]">{{sucursal.banco?.denominacion}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'sucursal/'+ sucursal.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>
