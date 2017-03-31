@@ -1,0 +1,32 @@
+// DEBIN INICIAL
+entity Banco {
+	denominacion String required,
+    codigo String required
+}
+entity Sucursal {
+	denominacion String required,
+    codigo String required
+}
+
+relationship OneToMany {
+	Banco{denominacion} to Sucursal{denominacion}
+}
+
+entity AliasCBU {
+	cbu Integer required minlength(22) maxlength(22)
+}
+
+relationship OneToOne {
+	AliasCBU{sucursal} to Sucursal,
+    AliasCBU{banco} to Banco
+}
+
+relationship ManyToOne {
+	AliasCBU{user(login)} to User
+}
+
+paginate Banco, Sucursal with pagination
+paginate AliasCBU with infinite-scroll
+dto * with mapstruct
+service all with serviceImpl
+
