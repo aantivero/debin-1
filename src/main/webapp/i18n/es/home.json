@@ -1,9 +1,9 @@
 {
     "home": {
-        "title": "¡Bienvenido, Java Hipster!",
-        "subtitle": "Esta es su página de inicio",
+        "title": "Sistema de Pago DEBIN",
+        "subtitle": "Débito y Crédito Inmediato",
         "logged": {
-            "message": "Está conectado como \"{{username}}\"."
+            "message": "<strong>Bienvenido</strong> \"{{username}}\". Puede comenzar a operar"
         },
         "question": "Si tiene preguntas sobre JHipster:",
         "link": {
