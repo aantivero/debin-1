@@ -49,8 +49,8 @@
         "messages": {
             "info": {
                 "authenticated": {
-                    "prefix": "Si desea ",
-                    "link": "iniciar una sesión",
+                    "prefix": "Si ya tiene una cuenta puede ",
+                    "link": "iniciar una sesión.",
                     "suffix": ", puede intentar con las cuentas predeterminadas:<br/>- Administrator (usuario=\"admin\" y contraseña=\"admin\") <br/>- Usuario (usuario=\"user\" y contraseña=\"user\")."
                 },
                 "register": {
