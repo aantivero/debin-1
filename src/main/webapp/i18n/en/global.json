@@ -130,5 +130,10 @@
         "emailexists": "E-mail is already in use!",
         "idexists": "A new {{ entityName }} cannot already have an ID"
     },
-    "footer": "This is your footer"
+    "footer": "This is your footer",
+    "extra": {
+        "info": {
+            "title": "Información"
+        }
+    }
 }

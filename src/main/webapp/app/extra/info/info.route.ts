@@ -8,7 +8,7 @@ export const infoRoute: Route = {
   component: InfoComponent,
   data: {
     authorities: [],
-    pageTitle: 'info.title'
+    pageTitle: 'extra.info.title'
   },
   canActivate: [UserRouteAccessService]
 };

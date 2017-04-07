@@ -130,5 +130,10 @@
         "emailexists": "E-mail is already in use!",
         "idexists": "A new {{entityName}} cannot already have an ID"
     },
-    "footer": "Desarrollado por <a href=\"https://www.linkedin.com/in/alejandroantivero/\"><strong>Alejandro Antivero</strong></a>"
+    "footer": "Desarrollado por <a href=\"https://www.linkedin.com/in/alejandroantivero/\"><strong>Alejandro Antivero</strong></a>",
+    "extra": {
+        "info": {
+            "title": "Información"
+        }
+    }
 }
