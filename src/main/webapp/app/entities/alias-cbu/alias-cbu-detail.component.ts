@@ -1,6 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { JhiLanguageService } from 'ng-jhipster';
+import { Subscription } from 'rxjs/Rx';
+import { EventManager , JhiLanguageService  } from 'ng-jhipster';
+
 import { AliasCBU } from './alias-cbu.model';
 import { AliasCBUService } from './alias-cbu.service';
 
@@ -12,8 +14,10 @@ export class AliasCBUDetailComponent implements OnInit, OnDestroy {
 
     aliasCBU: AliasCBU;
     private subscription: any;
+    private eventSubscriber: Subscription;
 
     constructor(
+        private eventManager: EventManager,
         private jhiLanguageService: JhiLanguageService,
         private aliasCBUService: AliasCBUService,
         private route: ActivatedRoute
@@ -25,6 +29,7 @@ export class AliasCBUDetailComponent implements OnInit, OnDestroy {
         this.subscription = this.route.params.subscribe(params => {
             this.load(params['id']);
         });
+        this.registerChangeInAliasCBUS();
     }
 
     load (id) {
@@ -38,6 +43,11 @@ export class AliasCBUDetailComponent implements OnInit, OnDestroy {
 
     ngOnDestroy() {
         this.subscription.unsubscribe();
+        this.eventManager.destroy(this.eventSubscriber);
+    }
+
+    registerChangeInAliasCBUS() {
+        this.eventSubscriber = this.eventManager.subscribe('aliasCBUListModification', response => this.load(this.aliasCBU.id));
     }
 
 }

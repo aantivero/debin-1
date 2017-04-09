@@ -73,11 +73,11 @@ export class AliasCBUDialogComponent implements OnInit {
         if (this.aliasCBU.id !== undefined) {
             this.aliasCBUService.update(this.aliasCBU)
                 .subscribe((res: AliasCBU) =>
-                    this.onSaveSuccess(res), (res: Response) => this.onSaveError(res.json()));
+                    this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
         } else {
             this.aliasCBUService.create(this.aliasCBU)
                 .subscribe((res: AliasCBU) =>
-                    this.onSaveSuccess(res), (res: Response) => this.onSaveError(res.json()));
+                    this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
         }
     }
 
@@ -88,6 +88,11 @@ export class AliasCBUDialogComponent implements OnInit {
     }
 
     private onSaveError (error) {
+        try {
+            error.json();
+        } catch (exception) {
+            error.message = error.text();
+        }
         this.isSaving = false;
         this.onError(error);
     }
@@ -132,7 +137,6 @@ export class AliasCBUPopupComponent implements OnInit, OnDestroy {
                 this.modalRef = this.aliasCBUPopupService
                     .open(AliasCBUDialogComponent);
             }
-
         });
     }
 

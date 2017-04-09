@@ -37,14 +37,16 @@ export const sucursalRoute: Routes = [
     data: {
         authorities: ['ROLE_USER'],
         pageTitle: 'debin1App.sucursal.home.title'
-    }
+    },
+    canActivate: [UserRouteAccessService]
   }, {
     path: 'sucursal/:id',
     component: SucursalDetailComponent,
     data: {
         authorities: ['ROLE_USER'],
         pageTitle: 'debin1App.sucursal.home.title'
-    }
+    },
+    canActivate: [UserRouteAccessService]
   }
 ];
 
@@ -56,6 +58,7 @@ export const sucursalPopupRoute: Routes = [
         authorities: ['ROLE_USER'],
         pageTitle: 'debin1App.sucursal.home.title'
     },
+    canActivate: [UserRouteAccessService],
     outlet: 'popup'
   },
   {
@@ -65,6 +68,7 @@ export const sucursalPopupRoute: Routes = [
         authorities: ['ROLE_USER'],
         pageTitle: 'debin1App.sucursal.home.title'
     },
+    canActivate: [UserRouteAccessService],
     outlet: 'popup'
   },
   {
@@ -74,6 +78,7 @@ export const sucursalPopupRoute: Routes = [
         authorities: ['ROLE_USER'],
         pageTitle: 'debin1App.sucursal.home.title'
     },
+    canActivate: [UserRouteAccessService],
     outlet: 'popup'
   }
 ];

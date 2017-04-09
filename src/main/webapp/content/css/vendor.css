@@ -1,5 +1,6 @@
 /* after changing this file run 'yarn run webpack:build:vendor' or 'yarn install' or 'yarn run webpack:build' */
-/*@import '~bootstrap/dist/css/bootstrap.min.css';*/
+/*@import '~bootstrap/dist/css/bootstrap.min.css';
+@import '~font-awesome/css/font-awesome.css';*/
 @import '~daemonite-material/css/material.min.css';
 @import '~font-awesome/css/font-awesome.css';
 

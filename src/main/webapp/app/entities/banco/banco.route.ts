@@ -37,14 +37,16 @@ export const bancoRoute: Routes = [
     data: {
         authorities: ['ROLE_USER'],
         pageTitle: 'debin1App.banco.home.title'
-    }
+    },
+    canActivate: [UserRouteAccessService]
   }, {
     path: 'banco/:id',
     component: BancoDetailComponent,
     data: {
         authorities: ['ROLE_USER'],
         pageTitle: 'debin1App.banco.home.title'
-    }
+    },
+    canActivate: [UserRouteAccessService]
   }
 ];
 
@@ -56,6 +58,7 @@ export const bancoPopupRoute: Routes = [
         authorities: ['ROLE_USER'],
         pageTitle: 'debin1App.banco.home.title'
     },
+    canActivate: [UserRouteAccessService],
     outlet: 'popup'
   },
   {
@@ -65,6 +68,7 @@ export const bancoPopupRoute: Routes = [
         authorities: ['ROLE_USER'],
         pageTitle: 'debin1App.banco.home.title'
     },
+    canActivate: [UserRouteAccessService],
     outlet: 'popup'
   },
   {
@@ -74,6 +78,7 @@ export const bancoPopupRoute: Routes = [
         authorities: ['ROLE_USER'],
         pageTitle: 'debin1App.banco.home.title'
     },
+    canActivate: [UserRouteAccessService],
     outlet: 'popup'
   }
 ];

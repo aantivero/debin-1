@@ -3,10 +3,11 @@ import { Router, NavigationEnd } from '@angular/router';
 import { Observable, Observer, Subscription } from 'rxjs/Rx';
 
 import { CSRFService } from '../auth/csrf.service';
+import { WindowRef } from './window.service';
 import { AuthServerProvider } from '../auth/auth-jwt.service';
 
-import SockJS = require('sockjs-client');
-import Stomp = require('webstomp-client');
+import * as SockJS from 'sockjs-client';
+import * as Stomp from 'webstomp-client';
 
 @Injectable()
 export class JhiTrackerService {
@@ -22,8 +23,7 @@ export class JhiTrackerService {
     constructor(
         private router: Router,
         private authServerProvider: AuthServerProvider,
-        private $document: Document,
-        private $window: Window,
+        private $window: WindowRef,
         private csrfService: CSRFService
     ) {
         this.connection = this.createConnection();
@@ -35,7 +35,7 @@ export class JhiTrackerService {
           this.connection = this.createConnection();
         }
         // building absolute path so that websocket doesn't fail when deploying with a context path
-        const loc = this.$window.location;
+        const loc = this.$window.nativeWindow.location;
         let url = '//' + loc.host + loc.pathname + 'websocket/tracker';
         const authToken = this.authServerProvider.getToken();
         if (authToken) {

@@ -47,11 +47,11 @@ export class SucursalDialogComponent implements OnInit {
         if (this.sucursal.id !== undefined) {
             this.sucursalService.update(this.sucursal)
                 .subscribe((res: Sucursal) =>
-                    this.onSaveSuccess(res), (res: Response) => this.onSaveError(res.json()));
+                    this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
         } else {
             this.sucursalService.create(this.sucursal)
                 .subscribe((res: Sucursal) =>
-                    this.onSaveSuccess(res), (res: Response) => this.onSaveError(res.json()));
+                    this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
         }
     }
 
@@ -62,6 +62,11 @@ export class SucursalDialogComponent implements OnInit {
     }
 
     private onSaveError (error) {
+        try {
+            error.json();
+        } catch (exception) {
+            error.message = error.text();
+        }
         this.isSaving = false;
         this.onError(error);
     }
@@ -98,7 +103,6 @@ export class SucursalPopupComponent implements OnInit, OnDestroy {
                 this.modalRef = this.sucursalPopupService
                     .open(SucursalDialogComponent);
             }
-
         });
     }
 

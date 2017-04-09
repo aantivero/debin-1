@@ -1,6 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { JhiLanguageService } from 'ng-jhipster';
+import { Subscription } from 'rxjs/Rx';
+import { EventManager , JhiLanguageService  } from 'ng-jhipster';
+
 import { Banco } from './banco.model';
 import { BancoService } from './banco.service';
 
@@ -12,8 +14,10 @@ export class BancoDetailComponent implements OnInit, OnDestroy {
 
     banco: Banco;
     private subscription: any;
+    private eventSubscriber: Subscription;
 
     constructor(
+        private eventManager: EventManager,
         private jhiLanguageService: JhiLanguageService,
         private bancoService: BancoService,
         private route: ActivatedRoute
@@ -25,6 +29,7 @@ export class BancoDetailComponent implements OnInit, OnDestroy {
         this.subscription = this.route.params.subscribe(params => {
             this.load(params['id']);
         });
+        this.registerChangeInBancos();
     }
 
     load (id) {
@@ -38,6 +43,11 @@ export class BancoDetailComponent implements OnInit, OnDestroy {
 
     ngOnDestroy() {
         this.subscription.unsubscribe();
+        this.eventManager.destroy(this.eventSubscriber);
+    }
+
+    registerChangeInBancos() {
+        this.eventSubscriber = this.eventManager.subscribe('bancoListModification', response => this.load(this.banco.id));
     }
 
 }

@@ -8,7 +8,6 @@ import { EventManager, AlertService, JhiLanguageService } from 'ng-jhipster';
 import { Banco } from './banco.model';
 import { BancoPopupService } from './banco-popup.service';
 import { BancoService } from './banco.service';
-import { Sucursal, SucursalService } from '../sucursal';
 
 @Component({
     selector: 'jhi-banco-dialog',
@@ -19,14 +18,11 @@ export class BancoDialogComponent implements OnInit {
     banco: Banco;
     authorities: any[];
     isSaving: boolean;
-
-    sucursals: Sucursal[];
     constructor(
         public activeModal: NgbActiveModal,
         private jhiLanguageService: JhiLanguageService,
         private alertService: AlertService,
         private bancoService: BancoService,
-        private sucursalService: SucursalService,
         private eventManager: EventManager
     ) {
         this.jhiLanguageService.setLocations(['banco']);
@@ -35,8 +31,6 @@ export class BancoDialogComponent implements OnInit {
     ngOnInit() {
         this.isSaving = false;
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
-        this.sucursalService.query().subscribe(
-            (res: Response) => { this.sucursals = res.json(); }, (res: Response) => this.onError(res.json()));
     }
     clear () {
         this.activeModal.dismiss('cancel');
@@ -47,11 +41,11 @@ export class BancoDialogComponent implements OnInit {
         if (this.banco.id !== undefined) {
             this.bancoService.update(this.banco)
                 .subscribe((res: Banco) =>
-                    this.onSaveSuccess(res), (res: Response) => this.onSaveError(res.json()));
+                    this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
         } else {
             this.bancoService.create(this.banco)
                 .subscribe((res: Banco) =>
-                    this.onSaveSuccess(res), (res: Response) => this.onSaveError(res.json()));
+                    this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
         }
     }
 
@@ -62,16 +56,17 @@ export class BancoDialogComponent implements OnInit {
     }
 
     private onSaveError (error) {
+        try {
+            error.json();
+        } catch (exception) {
+            error.message = error.text();
+        }
         this.isSaving = false;
         this.onError(error);
     }
 
     private onError (error) {
         this.alertService.error(error.message, null, null);
-    }
-
-    trackSucursalById(index: number, item: Sucursal) {
-        return item.id;
     }
 }
 
@@ -98,7 +93,6 @@ export class BancoPopupComponent implements OnInit, OnDestroy {
                 this.modalRef = this.bancoPopupService
                     .open(BancoDialogComponent);
             }
-
         });
     }
 

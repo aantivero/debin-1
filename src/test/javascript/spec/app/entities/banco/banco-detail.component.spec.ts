@@ -1,13 +1,10 @@
 import { ComponentFixture, TestBed, async, inject } from '@angular/core/testing';
-import { MockBackend } from '@angular/http/testing';
-import { Http, BaseRequestOptions } from '@angular/http';
 import { OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
-import { DateUtils, DataUtils } from 'ng-jhipster';
-import { JhiLanguageService } from 'ng-jhipster';
-import { MockLanguageService } from '../../../helpers/mock-language.service';
+import { DateUtils, DataUtils, EventManager } from 'ng-jhipster';
+import { Debin1TestModule } from '../../../test.module';
 import { MockActivatedRoute } from '../../../helpers/mock-route.service';
 import { BancoDetailComponent } from '../../../../../../main/webapp/app/entities/banco/banco-detail.component';
 import { BancoService } from '../../../../../../main/webapp/app/entities/banco/banco.service';
@@ -22,10 +19,9 @@ describe('Component Tests', () => {
 
         beforeEach(async(() => {
             TestBed.configureTestingModule({
+                imports: [Debin1TestModule],
                 declarations: [BancoDetailComponent],
                 providers: [
-                    MockBackend,
-                    BaseRequestOptions,
                     DateUtils,
                     DataUtils,
                     DatePipe,
@@ -33,18 +29,8 @@ describe('Component Tests', () => {
                         provide: ActivatedRoute,
                         useValue: new MockActivatedRoute({id: 123})
                     },
-                    {
-                        provide: Http,
-                        useFactory: (backendInstance: MockBackend, defaultOptions: BaseRequestOptions) => {
-                            return new Http(backendInstance, defaultOptions);
-                        },
-                        deps: [MockBackend, BaseRequestOptions]
-                    },
-                    {
-                        provide: JhiLanguageService,
-                        useClass: MockLanguageService
-                    },
-                    BancoService
+                    BancoService,
+                    EventManager
                 ]
             }).overrideComponent(BancoDetailComponent, {
                 set: {

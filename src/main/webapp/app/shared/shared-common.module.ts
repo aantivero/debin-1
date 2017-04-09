@@ -4,6 +4,8 @@ import { Title } from '@angular/platform-browser';
 import { TranslateService } from 'ng2-translate';
 import { AlertService } from 'ng-jhipster';
 
+import { WindowRef } from './tracker/window.service';
+
 import {
     Debin1SharedLibsModule,
     JhiLanguageHelper,
@@ -30,6 +32,7 @@ export function alertServiceProvider(sanitizer: Sanitizer, translateService: Tra
     ],
     providers: [
         JhiLanguageHelper,
+        WindowRef,
         {
             provide: AlertService,
             useFactory: alertServiceProvider,

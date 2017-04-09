@@ -19,14 +19,16 @@ export const aliasCBURoute: Routes = [
     data: {
         authorities: ['ROLE_USER'],
         pageTitle: 'debin1App.aliasCBU.home.title'
-    }
+    },
+    canActivate: [UserRouteAccessService]
   }, {
     path: 'alias-cbu/:id',
     component: AliasCBUDetailComponent,
     data: {
         authorities: ['ROLE_USER'],
         pageTitle: 'debin1App.aliasCBU.home.title'
-    }
+    },
+    canActivate: [UserRouteAccessService]
   }
 ];
 
@@ -38,6 +40,7 @@ export const aliasCBUPopupRoute: Routes = [
         authorities: ['ROLE_USER'],
         pageTitle: 'debin1App.aliasCBU.home.title'
     },
+    canActivate: [UserRouteAccessService],
     outlet: 'popup'
   },
   {
@@ -47,6 +50,7 @@ export const aliasCBUPopupRoute: Routes = [
         authorities: ['ROLE_USER'],
         pageTitle: 'debin1App.aliasCBU.home.title'
     },
+    canActivate: [UserRouteAccessService],
     outlet: 'popup'
   },
   {
@@ -56,6 +60,7 @@ export const aliasCBUPopupRoute: Routes = [
         authorities: ['ROLE_USER'],
         pageTitle: 'debin1App.aliasCBU.home.title'
     },
+    canActivate: [UserRouteAccessService],
     outlet: 'popup'
   }
 ];

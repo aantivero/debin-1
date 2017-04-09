@@ -33,7 +33,7 @@ public class SucursalResource {
     private final Logger log = LoggerFactory.getLogger(SucursalResource.class);
 
     private static final String ENTITY_NAME = "sucursal";
-
+        
     private final SucursalRepository sucursalRepository;
 
     public SucursalResource(SucursalRepository sucursalRepository) {
@@ -96,7 +96,6 @@ public class SucursalResource {
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/sucursals");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
-
 
     /**
      * GET  /sucursals/:id : get the "id" sucursal.
