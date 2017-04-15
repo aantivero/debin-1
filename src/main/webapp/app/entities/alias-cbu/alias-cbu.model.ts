@@ -7,6 +7,7 @@ const enum Moneda {
 import { Sucursal } from '../sucursal';
 import { Banco } from '../banco';
 import { User } from '../../shared';
+import { Debin } from '../debin';
 export class AliasCBU {
     constructor(
         public id?: number,
@@ -20,6 +21,8 @@ export class AliasCBU {
         public sucursal?: Sucursal,
         public banco?: Banco,
         public user?: User,
+        public debinpagador?: Debin,
+        public debincobrador?: Debin,
     ) {
         this.debin = false;
         this.pagador = false;

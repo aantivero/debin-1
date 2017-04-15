@@ -1,0 +1,75 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myDebinLabel" jhiTranslate="debin1App.debin.home.createOrEditLabel">Create or edit a Debin</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!debin.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="debin.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="debin1App.debin.desde" for="field_desde">Desde</label>
+            <div class="d-flex">
+                <input id="field_desde" type="datetime-local" class="form-control" name="desde" [(ngModel)]="debin.desde"
+                  />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="debin1App.debin.hasta" for="field_hasta">Hasta</label>
+            <div class="d-flex">
+                <input id="field_hasta" type="datetime-local" class="form-control" name="hasta" [(ngModel)]="debin.hasta"
+                  />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="debin1App.debin.activo" for="field_activo">Activo</label>
+            <input type="checkbox" class="form-control" name="activo" id="field_activo"
+                [(ngModel)]="debin.activo"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="debin1App.debin.monto" for="field_monto">Monto</label>
+            <input type="number" class="form-control" name="monto" id="field_monto"
+                [(ngModel)]="debin.monto"
+             />
+        </div>
+
+        <div class="form-group">
+            <label jhiTranslate="debin1App.debin.pagador" for="field_pagador">Pagador</label>
+            <select class="form-control" id="field_pagador" name="pagador" [(ngModel)]="debin.pagador"  required>
+                <option [ngValue]="aliasCBUOption.id === debin.pagador?.id ? debin.pagador : aliasCBUOption" *ngFor="let aliasCBUOption of aliascbus; trackBy: trackAliasCBUById">{{aliasCBUOption.nombre}}</option>
+            </select>
+        </div>
+        <div [hidden]="!(editForm.controls.pagador?.dirty && editForm.controls.pagador?.invalid)">
+            <small class="form-text text-danger"
+                [hidden]="!editForm.controls.pagador?.errors?.required" jhiTranslate="entity.validation.required">
+                This field is required.
+            </small>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="debin1App.debin.cobrador" for="field_cobrador">Cobrador</label>
+            <select class="form-control" id="field_cobrador" name="cobrador" [(ngModel)]="debin.cobrador"  required>
+                <option [ngValue]="aliasCBUOption.id === debin.cobrador?.id ? debin.cobrador : aliasCBUOption" *ngFor="let aliasCBUOption of aliascbus; trackBy: trackAliasCBUById">{{aliasCBUOption.nombre}}</option>
+            </select>
+        </div>
+        <div [hidden]="!(editForm.controls.cobrador?.dirty && editForm.controls.cobrador?.invalid)">
+            <small class="form-text text-danger"
+                [hidden]="!editForm.controls.cobrador?.errors?.required" jhiTranslate="entity.validation.required">
+                This field is required.
+            </small>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

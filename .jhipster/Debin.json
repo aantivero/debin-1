@@ -1,0 +1,46 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "pagador",
+            "otherEntityName": "aliasCBU",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "nombre"
+        },
+        {
+            "relationshipName": "cobrador",
+            "otherEntityName": "aliasCBU",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "nombre"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "desde",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "hasta",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "activo",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "monto",
+            "fieldType": "BigDecimal"
+        }
+    ],
+    "changelogDate": "20170415174916",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "debin",
+    "pagination": "pagination"
+}

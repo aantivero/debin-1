@@ -1,0 +1,26 @@
+{
+    "debin1App": {
+        "debin" : {
+            "home": {
+                "title": "Debins",
+                "createLabel": "Create a new Debin",
+                "createOrEditLabel": "Create or edit a Debin"
+            },
+            "created": "A new Debin is created with identifier {{ param }}",
+            "updated": "A Debin is updated with identifier {{ param }}",
+            "deleted": "A Debin is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Debin {{ id }}?"
+            },
+            "detail": {
+                "title": "Debin"
+            },
+            "desde": "Desde",
+            "hasta": "Hasta",
+            "activo": "Activo",
+            "monto": "Monto",
+            "pagador": "Pagador",
+            "cobrador": "Cobrador"
+        }
+    }
+}

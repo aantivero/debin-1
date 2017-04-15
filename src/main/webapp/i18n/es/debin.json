@@ -1,0 +1,26 @@
+{
+    "debin1App": {
+        "debin" : {
+            "home": {
+                "title": "Debins",
+                "createLabel": "Crear nuevo Debin",
+                "createOrEditLabel": "Crear o editar Debin"
+            },
+            "created": "Un nuevo Debin ha sido creado con el identificador {{ param }}",
+            "updated": "Un Debin ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Debin ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Debin {{ id }}?"
+            },
+            "detail": {
+                "title": "Debin"
+            },
+            "desde": "Desde",
+            "hasta": "Hasta",
+            "activo": "Activo",
+            "monto": "Monto",
+            "pagador": "Pagador",
+            "cobrador": "Cobrador"
+        }
+    }
+}

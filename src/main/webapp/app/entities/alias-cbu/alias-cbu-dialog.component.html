@@ -99,7 +99,7 @@
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="debin1App.aliasCBU.pagador" for="field_pagador">Pagador</label>
-            <input type="checkbox" class="form-control" name="pagador" id="field_pagador"
+            <input type="checkbox" class="form-check-input" name="pagador" id="field_pagador"
                 [(ngModel)]="aliasCBU.pagador"
              />
             <div [hidden]="!(editForm.controls.pagador?.dirty && editForm.controls.pagador?.invalid)">
@@ -111,7 +111,7 @@
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="debin1App.aliasCBU.cobrador" for="field_cobrador">Cobrador</label>
-            <input type="checkbox" class="form-control" name="cobrador" id="field_cobrador"
+            <input type="checkbox" class="form-check-input" name="cobrador" id="field_cobrador"
                 [(ngModel)]="aliasCBU.cobrador"
              />
             <div [hidden]="!(editForm.controls.cobrador?.dirty && editForm.controls.cobrador?.invalid)">
@@ -124,16 +124,16 @@
 
         <div class="form-group">
             <label jhiTranslate="debin1App.aliasCBU.sucursal" for="field_sucursal">Sucursal</label>
-            <select class="form-control" id="field_sucursal" name="sucursal" [(ngModel)]="aliasCBU.sucursal">
+            <select class="form-control" id="field_sucursal" name="sucursal" [(ngModel)]="aliasCBU.sucursal" >
                 <option [ngValue]="null"></option>
-                <option [ngValue]="sucursalOption.id === aliasCBU.sucursal?.id ? aliasCBU.sucursal : sucursalOption" *ngFor="let sucursalOption of sucursals; trackBy: trackSucursalById">{{sucursalOption.id}}</option>
+                <option [ngValue]="sucursalOption.id === aliasCBU.sucursal?.id ? aliasCBU.sucursal : sucursalOption" *ngFor="let sucursalOption of sucursals; trackBy: trackSucursalById">{{sucursalOption.denominacion}} - {{sucursalOption.banco.denominacion}}</option>
             </select>
         </div>
         <div class="form-group">
             <label jhiTranslate="debin1App.aliasCBU.banco" for="field_banco">Banco</label>
-            <select class="form-control" id="field_banco" name="banco" [(ngModel)]="aliasCBU.banco">
+            <select class="form-control" id="field_banco" name="banco" [(ngModel)]="aliasCBU.banco" >
                 <option [ngValue]="null"></option>
-                <option [ngValue]="bancoOption.id === aliasCBU.banco?.id ? aliasCBU.banco : bancoOption" *ngFor="let bancoOption of bancos; trackBy: trackBancoById">{{bancoOption.id}}</option>
+                <option [ngValue]="bancoOption.id === aliasCBU.banco?.id ? aliasCBU.banco : bancoOption" *ngFor="let bancoOption of bancos; trackBy: trackBancoById">{{bancoOption.denominacion}}</option>
             </select>
         </div>
         <div class="form-group">

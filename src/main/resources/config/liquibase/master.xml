@@ -8,8 +8,10 @@
     <include file="classpath:config/liquibase/changelog/20170331185824_added_entity_AliasCBU.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170331185824_added_entity_Banco.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170331185824_added_entity_Sucursal.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170415174916_added_entity_Debin.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="classpath:config/liquibase/changelog/20170331185824_added_entity_constraints_AliasCBU.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170331185824_added_entity_constraints_Sucursal.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170415174916_added_entity_constraints_Debin.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

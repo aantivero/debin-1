@@ -24,7 +24,9 @@
             "cobrador": "Cobrador",
             "sucursal": "Sucursal",
             "banco": "Banco",
-            "user": "User"
+            "user": "User",
+            "debinpagador": "Debinpagador",
+            "debincobrador": "Debincobrador"
         }
     }
 }

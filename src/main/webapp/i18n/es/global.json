@@ -10,6 +10,7 @@
                 "aliasCbu": "Alias CBU",
                 "banco": "Banco",
                 "sucursal": "Sucursal",
+                "debin": "Debin",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

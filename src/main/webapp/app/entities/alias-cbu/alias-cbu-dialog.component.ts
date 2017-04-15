@@ -43,24 +43,10 @@ export class AliasCBUDialogComponent implements OnInit {
     ngOnInit() {
         this.isSaving = false;
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
-        this.sucursalService.query({filter: 'aliascbu-is-null'}).subscribe((res: Response) => {
-            if (!this.aliasCBU.sucursal || !this.aliasCBU.sucursal.id) {
-                this.sucursals = res.json();
-            } else {
-                this.sucursalService.find(this.aliasCBU.sucursal.id).subscribe((subRes: Sucursal) => {
-                    this.sucursals = [subRes].concat(res.json());
-                }, (subRes: Response) => this.onError(subRes.json()));
-            }
-        }, (res: Response) => this.onError(res.json()));
-        this.bancoService.query({filter: 'aliascbu-is-null'}).subscribe((res: Response) => {
-            if (!this.aliasCBU.banco || !this.aliasCBU.banco.id) {
-                this.bancos = res.json();
-            } else {
-                this.bancoService.find(this.aliasCBU.banco.id).subscribe((subRes: Banco) => {
-                    this.bancos = [subRes].concat(res.json());
-                }, (subRes: Response) => this.onError(subRes.json()));
-            }
-        }, (res: Response) => this.onError(res.json()));
+        this.sucursalService.query().subscribe(
+            (res: Response) => { this.sucursals = res.json(); }, (res: Response) => this.onError(res.json()));
+        this.bancoService.query().subscribe(
+            (res: Response) => { this.bancos = res.json(); }, (res: Response) => this.onError(res.json()));
         this.userService.query().subscribe(
             (res: Response) => { this.users = res.json(); }, (res: Response) => this.onError(res.json()));
     }

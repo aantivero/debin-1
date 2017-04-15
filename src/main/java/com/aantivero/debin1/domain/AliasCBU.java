@@ -1,5 +1,6 @@
 package com.aantivero.debin1.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -7,6 +8,8 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 import com.aantivero.debin1.domain.enumeration.Moneda;
@@ -58,16 +61,24 @@ public class AliasCBU implements Serializable {
     @Column(name = "cobrador", nullable = false)
     private Boolean cobrador;
 
-    @OneToOne
-    @JoinColumn(unique = true)
+    @ManyToOne
     private Sucursal sucursal;
 
-    @OneToOne
-    @JoinColumn(unique = true)
+    @ManyToOne
     private Banco banco;
 
     @ManyToOne
     private User user;
+
+    @OneToMany(mappedBy = "pagador")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Debin> debinpagadors = new HashSet<>();
+
+    @OneToMany(mappedBy = "cobrador")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Debin> debincobradors = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -205,6 +216,56 @@ public class AliasCBU implements Serializable {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Set<Debin> getDebinpagadors() {
+        return debinpagadors;
+    }
+
+    public AliasCBU debinpagadors(Set<Debin> debins) {
+        this.debinpagadors = debins;
+        return this;
+    }
+
+    public AliasCBU addDebinpagador(Debin debin) {
+        this.debinpagadors.add(debin);
+        debin.setPagador(this);
+        return this;
+    }
+
+    public AliasCBU removeDebinpagador(Debin debin) {
+        this.debinpagadors.remove(debin);
+        debin.setPagador(null);
+        return this;
+    }
+
+    public void setDebinpagadors(Set<Debin> debins) {
+        this.debinpagadors = debins;
+    }
+
+    public Set<Debin> getDebincobradors() {
+        return debincobradors;
+    }
+
+    public AliasCBU debincobradors(Set<Debin> debins) {
+        this.debincobradors = debins;
+        return this;
+    }
+
+    public AliasCBU addDebincobrador(Debin debin) {
+        this.debincobradors.add(debin);
+        debin.setCobrador(this);
+        return this;
+    }
+
+    public AliasCBU removeDebincobrador(Debin debin) {
+        this.debincobradors.remove(debin);
+        debin.setCobrador(null);
+        return this;
+    }
+
+    public void setDebincobradors(Set<Debin> debins) {
+        this.debincobradors = debins;
     }
 
     @Override

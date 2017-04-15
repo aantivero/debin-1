@@ -1,5 +1,6 @@
 package com.aantivero.debin1.web.rest;
 
+import com.aantivero.debin1.security.SecurityUtils;
 import com.codahale.metrics.annotation.Timed;
 import com.aantivero.debin1.domain.AliasCBU;
 
@@ -33,7 +34,7 @@ public class AliasCBUResource {
     private final Logger log = LoggerFactory.getLogger(AliasCBUResource.class);
 
     private static final String ENTITY_NAME = "aliasCBU";
-        
+
     private final AliasCBURepository aliasCBURepository;
 
     public AliasCBUResource(AliasCBURepository aliasCBURepository) {
@@ -92,7 +93,7 @@ public class AliasCBUResource {
     @Timed
     public ResponseEntity<List<AliasCBU>> getAllAliasCBUS(@ApiParam Pageable pageable) {
         log.debug("REST request to get a page of AliasCBUS");
-        Page<AliasCBU> page = aliasCBURepository.findAll(pageable);
+        Page<AliasCBU> page = aliasCBURepository.findByUserLogin(SecurityUtils.getCurrentUserLogin(), pageable);//aliasCBURepository.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/alias-cbus");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

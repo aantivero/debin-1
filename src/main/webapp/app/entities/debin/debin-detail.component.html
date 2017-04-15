@@ -1,0 +1,49 @@
+
+<div *ngIf="debin">
+    <h2><span jhiTranslate="debin1App.debin.detail.title">Debin</span> {{debin.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="debin1App.debin.desde">Desde</span></dt>
+        <dd>
+            <span>{{debin.desde | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="debin1App.debin.hasta">Hasta</span></dt>
+        <dd>
+            <span>{{debin.hasta | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="debin1App.debin.activo">Activo</span></dt>
+        <dd>
+            <span>{{debin.activo}}</span>
+        </dd>
+        <dt><span jhiTranslate="debin1App.debin.monto">Monto</span></dt>
+        <dd>
+            <span>{{debin.monto}}</span>
+        </dd>
+        <dt><span jhiTranslate="debin1App.debin.pagador">Pagador</span></dt>
+        <dd>
+            <div *ngIf="debin.pagador">
+                <a [routerLink]="['/alias-cbu', debin.pagador?.id]">{{debin.pagador?.nombre}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="debin1App.debin.cobrador">Cobrador</span></dt>
+        <dd>
+            <div *ngIf="debin.cobrador">
+                <a [routerLink]="['/alias-cbu', debin.cobrador?.id]">{{debin.cobrador?.nombre}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'debin/'+ debin.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>
