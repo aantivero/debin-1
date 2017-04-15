@@ -18,6 +18,12 @@
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="cbu"><span jhiTranslate="debin1App.aliasCBU.cbu">Cbu</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="nombre"><span jhiTranslate="debin1App.aliasCBU.nombre">Nombre</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="moneda"><span jhiTranslate="debin1App.aliasCBU.moneda">Moneda</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="saldo"><span jhiTranslate="debin1App.aliasCBU.saldo">Saldo</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="debin"><span jhiTranslate="debin1App.aliasCBU.debin">Debin</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="pagador"><span jhiTranslate="debin1App.aliasCBU.pagador">Pagador</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="cobrador"><span jhiTranslate="debin1App.aliasCBU.cobrador">Cobrador</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="sucursal.id"><span jhiTranslate="debin1App.aliasCBU.sucursal">Sucursal</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="banco.id"><span jhiTranslate="debin1App.aliasCBU.banco">Banco</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="user.login"><span jhiTranslate="debin1App.aliasCBU.user">User</span> <span class="fa fa-sort"></span></th>
@@ -28,6 +34,12 @@
             <tr *ngFor="let aliasCBU of aliasCBUS ;trackBy: trackId">
                 <td><a [routerLink]="['../alias-cbu', aliasCBU.id ]">{{aliasCBU.id}}</a></td>
                 <td>{{aliasCBU.cbu}}</td>
+                <td>{{aliasCBU.nombre}}</td>
+                <td jhiTranslate="{{'debin1App.Moneda.' + aliasCBU.moneda}}">{{aliasCBU.moneda}}</td>
+                <td>{{aliasCBU.saldo}}</td>
+                <td>{{aliasCBU.debin}}</td>
+                <td>{{aliasCBU.pagador}}</td>
+                <td>{{aliasCBU.cobrador}}</td>
                 <td>
                     <div *ngIf="aliasCBU.sucursal">
                         <a [routerLink]="['../sucursal', aliasCBU.sucursal?.id ]" >{{aliasCBU.sucursal?.id}}</a>

@@ -42,7 +42,7 @@ export class AliasCBUComponent implements OnInit, OnDestroy {
         };
         this.predicate = 'id';
         this.reverse = true;
-        this.jhiLanguageService.setLocations(['aliasCBU']);
+        this.jhiLanguageService.setLocations(['aliasCBU', 'moneda']);
     }
 
     loadAll () {

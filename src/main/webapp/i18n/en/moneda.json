@@ -1,0 +1,9 @@
+{
+    "debin1App": {
+        "Moneda" : {
+            "null": "",
+            "PESO": "PESO",
+            "DOLAR": "DOLAR"
+        }
+    }
+}

@@ -22,7 +22,7 @@ export class AliasCBUDetailComponent implements OnInit, OnDestroy {
         private aliasCBUService: AliasCBUService,
         private route: ActivatedRoute
     ) {
-        this.jhiLanguageService.setLocations(['aliasCBU']);
+        this.jhiLanguageService.setLocations(['aliasCBU', 'moneda']);
     }
 
     ngOnInit() {

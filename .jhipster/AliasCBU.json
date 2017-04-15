@@ -37,11 +37,58 @@
             "fieldValidateRulesMinlength": 22,
             "fieldValidateRulesMaxlength": 22,
             "fieldValidateRulesPattern": "[0-9]+"
+        },
+        {
+            "fieldName": "nombre",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "maxlength"
+            ],
+            "fieldValidateRulesMinlength": "6",
+            "fieldValidateRulesMaxlength": 20
+        },
+        {
+            "fieldName": "moneda",
+            "fieldType": "Moneda",
+            "fieldValues": "PESO, DOLAR",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "saldo",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "debin",
+            "fieldType": "Boolean",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "pagador",
+            "fieldType": "Boolean",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "cobrador",
+            "fieldType": "Boolean",
+            "fieldValidateRules": [
+                "required"
+            ]
         }
     ],
     "changelogDate": "20170331185824",
-    "entityTableName": "alias_cbu",
     "dto": "no",
-    "pagination": "infinite-scroll",
-    "service": "no"
+    "service": "no",
+    "entityTableName": "alias_cbu",
+    "pagination": "infinite-scroll"
 }

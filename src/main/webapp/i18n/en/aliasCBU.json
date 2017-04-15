@@ -16,6 +16,12 @@
                 "title": "Alias CBU"
             },
             "cbu": "Cbu",
+            "nombre": "Nombre",
+            "moneda": "Moneda",
+            "saldo": "Saldo",
+            "debin": "Debin",
+            "pagador": "Pagador",
+            "cobrador": "Cobrador",
             "sucursal": "Sucursal",
             "banco": "Banco",
             "user": "User"

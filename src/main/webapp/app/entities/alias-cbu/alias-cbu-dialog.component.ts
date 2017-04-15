@@ -37,7 +37,7 @@ export class AliasCBUDialogComponent implements OnInit {
         private userService: UserService,
         private eventManager: EventManager
     ) {
-        this.jhiLanguageService.setLocations(['aliasCBU']);
+        this.jhiLanguageService.setLocations(['aliasCBU', 'moneda']);
     }
 
     ngOnInit() {

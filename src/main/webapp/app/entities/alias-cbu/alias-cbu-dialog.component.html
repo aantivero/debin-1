@@ -36,6 +36,91 @@
                 </small>
             </div>
         </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="debin1App.aliasCBU.nombre" for="field_nombre">Nombre</label>
+            <input type="text" class="form-control" name="nombre" id="field_nombre"
+                [(ngModel)]="aliasCBU.nombre"
+            required minlength="6" maxlength="20" />
+            <div [hidden]="!(editForm.controls.nombre?.dirty && editForm.controls.nombre?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.nombre?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.nombre?.errors?.minlength" jhiTranslate="entity.validation.minlength" translateValues="{ min: 6 }">
+                   This field is required to be at least 6 characters.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.nombre?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 20 }">
+                   This field cannot be longer than 20 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="debin1App.aliasCBU.moneda" for="field_moneda">Moneda</label>
+            <select class="form-control" name="moneda" [(ngModel)]="aliasCBU.moneda" id="field_moneda"  required>
+                <option value="PESO" jhiTranslate="debin1App.Moneda.PESO">PESO</option>
+                <option value="DOLAR" jhiTranslate="debin1App.Moneda.DOLAR">DOLAR</option>
+            </select>
+            <div [hidden]="!(editForm.controls.moneda?.dirty && editForm.controls.moneda?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.moneda?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="debin1App.aliasCBU.saldo" for="field_saldo">Saldo</label>
+            <input type="number" class="form-control" name="saldo" id="field_saldo"
+                [(ngModel)]="aliasCBU.saldo"
+            required />
+            <div [hidden]="!(editForm.controls.saldo?.dirty && editForm.controls.saldo?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.saldo?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.saldo?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="debin1App.aliasCBU.debin" for="field_debin">Debin</label>
+            <input type="checkbox" class="form-check-input" name="debin" id="field_debin"
+                [(ngModel)]="aliasCBU.debin"
+             />
+            <div [hidden]="!(editForm.controls.debin?.dirty && editForm.controls.debin?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.debin?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="debin1App.aliasCBU.pagador" for="field_pagador">Pagador</label>
+            <input type="checkbox" class="form-control" name="pagador" id="field_pagador"
+                [(ngModel)]="aliasCBU.pagador"
+             />
+            <div [hidden]="!(editForm.controls.pagador?.dirty && editForm.controls.pagador?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.pagador?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="debin1App.aliasCBU.cobrador" for="field_cobrador">Cobrador</label>
+            <input type="checkbox" class="form-control" name="cobrador" id="field_cobrador"
+                [(ngModel)]="aliasCBU.cobrador"
+             />
+            <div [hidden]="!(editForm.controls.cobrador?.dirty && editForm.controls.cobrador?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.cobrador?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
 
         <div class="form-group">
             <label jhiTranslate="debin1App.aliasCBU.sucursal" for="field_sucursal">Sucursal</label>

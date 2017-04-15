@@ -24,6 +24,30 @@
             <column name="cbu" type="varchar(22)">
                 <constraints nullable="false" />
             </column>
+
+            <column name="nombre" type="varchar(20)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="moneda" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="saldo" type="decimal(10,2)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="debin" type="boolean">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="pagador" type="boolean">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="cobrador" type="boolean">
+                <constraints nullable="false" />
+            </column>
             <column name="sucursal_id" type="bigint">
                 <constraints unique="true" nullable="true" />
             </column>            <column name="banco_id" type="bigint">

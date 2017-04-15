@@ -22,7 +22,7 @@ export class AliasCBUDeleteDialogComponent {
         public activeModal: NgbActiveModal,
         private eventManager: EventManager
     ) {
-        this.jhiLanguageService.setLocations(['aliasCBU']);
+        this.jhiLanguageService.setLocations(['aliasCBU', 'moneda']);
     }
 
     clear () {
