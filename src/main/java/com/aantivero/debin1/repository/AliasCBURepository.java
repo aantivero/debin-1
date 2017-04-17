@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.*;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Spring Data JPA repository for the AliasCBU entity.
@@ -18,4 +19,8 @@ public interface AliasCBURepository extends JpaRepository<AliasCBU,Long> {
     List<AliasCBU> findByUserIsCurrentUser();
 
     Page<AliasCBU> findByUserLogin(String currentUserLogin, Pageable pageable);
+
+    Optional<AliasCBU> findOneByNombre(String nombre);
+
+    Optional<AliasCBU> findOneByCbu(String cbu);
 }

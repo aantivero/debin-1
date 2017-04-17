@@ -22,11 +22,11 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="cbu" type="varchar(22)">
-                <constraints nullable="false" />
+                <constraints nullable="false" unique="true"/>
             </column>
 
             <column name="nombre" type="varchar(20)">
-                <constraints nullable="false" />
+                <constraints nullable="false" unique="true"/>
             </column>
 
             <column name="moneda" type="varchar(255)">
@@ -63,6 +63,6 @@
 
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
-        
+
     </changeSet>
 </databaseChangeLog>

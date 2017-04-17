@@ -59,15 +59,26 @@ public class AliasCBUResource {
         log.debug("REST request to save AliasCBU : {}", aliasCBU);
         if (aliasCBU.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new aliasCBU cannot already have an ID")).body(null);
+        } else if(aliasCBURepository.findOneByNombre(aliasCBU.getNombre()).isPresent()) {
+            //TODO falta escribir el mensaje
+            return ResponseEntity.badRequest()
+                .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "aliasexists", "Alias CBU in use"))
+                .body(null);
+        } else if(aliasCBURepository.findOneByCbu(aliasCBU.getCbu()).isPresent()) {
+            //TODO falta escribir el mensaje
+            return ResponseEntity.badRequest()
+                .headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "cbuexists", "CBU in use"))
+                .body(null);
+        } else {
+            if (aliasCBU.getUser()== null){
+                log.debug("User into AliasCBU not declare");
+                aliasCBU.setUser(userService.getUserWithAuthorities());
+            }
+            AliasCBU result = aliasCBURepository.save(aliasCBU);
+            return ResponseEntity.created(new URI("/api/alias-cbus/" + result.getId()))
+                .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
+                .body(result);
         }
-        if (aliasCBU.getUser()== null){
-            log.debug("User into AliasCBU not declare");
-            aliasCBU.setUser(userService.getUserWithAuthorities());
-        }
-        AliasCBU result = aliasCBURepository.save(aliasCBU);
-        return ResponseEntity.created(new URI("/api/alias-cbus/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
-            .body(result);
     }
 
     /**

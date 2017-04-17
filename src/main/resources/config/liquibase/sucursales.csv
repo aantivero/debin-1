@@ -1,0 +1,10 @@
+id;denominacion;codigo;banco_id
+1;Suc 01 - Banco 01;001-01;1
+2;Suc 02 - Banco 01;001-02;1
+3;Suc 03 - Banco 01;001-03;1
+4;Suc 01 - Banco 02;002-01;2
+5;Suc 02 - Banco 02;002-02;2
+6;Suc 03 - Banco 02;002-03;2
+7;Suc 01 - Banco 03;003-01;3
+8;Suc 02 - Banco 03;003-02;3
+9;Suc 03 - Banco 03;003-03;3

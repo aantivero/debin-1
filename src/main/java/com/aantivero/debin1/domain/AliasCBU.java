@@ -32,12 +32,12 @@ public class AliasCBU implements Serializable {
     @NotNull
     @Size(min = 22, max = 22)
     @Pattern(regexp = "[0-9]+")
-    @Column(name = "cbu", length = 22, nullable = false)
+    @Column(name = "cbu", length = 22, nullable = false, unique = true)
     private String cbu;
 
     @NotNull
     @Size(min = 6, max = 20)
-    @Column(name = "nombre", length = 20, nullable = false)
+    @Column(name = "nombre", length = 20, nullable = false, unique = true)
     private String nombre;
 
     @NotNull
