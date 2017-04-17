@@ -4,6 +4,7 @@ import com.aantivero.debin1.Debin1App;
 
 import com.aantivero.debin1.domain.AliasCBU;
 import com.aantivero.debin1.repository.AliasCBURepository;
+import com.aantivero.debin1.service.UserService;
 import com.aantivero.debin1.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
@@ -64,6 +65,9 @@ public class AliasCBUResourceIntTest {
     private AliasCBURepository aliasCBURepository;
 
     @Autowired
+    private UserService userService;
+
+    @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
 
     @Autowired
@@ -82,7 +86,7 @@ public class AliasCBUResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        AliasCBUResource aliasCBUResource = new AliasCBUResource(aliasCBURepository);
+        AliasCBUResource aliasCBUResource = new AliasCBUResource(aliasCBURepository, userService);
         this.restAliasCBUMockMvc = MockMvcBuilders.standaloneSetup(aliasCBUResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)

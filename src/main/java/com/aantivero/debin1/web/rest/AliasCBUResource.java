@@ -1,6 +1,8 @@
 package com.aantivero.debin1.web.rest;
 
+import com.aantivero.debin1.security.AuthoritiesConstants;
 import com.aantivero.debin1.security.SecurityUtils;
+import com.aantivero.debin1.service.UserService;
 import com.codahale.metrics.annotation.Timed;
 import com.aantivero.debin1.domain.AliasCBU;
 
@@ -37,8 +39,11 @@ public class AliasCBUResource {
 
     private final AliasCBURepository aliasCBURepository;
 
-    public AliasCBUResource(AliasCBURepository aliasCBURepository) {
+    private final UserService userService;
+
+    public AliasCBUResource(AliasCBURepository aliasCBURepository, UserService userService) {
         this.aliasCBURepository = aliasCBURepository;
+        this.userService = userService;
     }
 
     /**
@@ -54,6 +59,10 @@ public class AliasCBUResource {
         log.debug("REST request to save AliasCBU : {}", aliasCBU);
         if (aliasCBU.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new aliasCBU cannot already have an ID")).body(null);
+        }
+        if (aliasCBU.getUser()== null){
+            log.debug("User into AliasCBU not declare");
+            aliasCBU.setUser(userService.getUserWithAuthorities());
         }
         AliasCBU result = aliasCBURepository.save(aliasCBU);
         return ResponseEntity.created(new URI("/api/alias-cbus/" + result.getId()))
@@ -93,7 +102,15 @@ public class AliasCBUResource {
     @Timed
     public ResponseEntity<List<AliasCBU>> getAllAliasCBUS(@ApiParam Pageable pageable) {
         log.debug("REST request to get a page of AliasCBUS");
-        Page<AliasCBU> page = aliasCBURepository.findByUserLogin(SecurityUtils.getCurrentUserLogin(), pageable);//aliasCBURepository.findAll(pageable);
+        Page<AliasCBU> page;
+        if (SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.ADMIN)) {
+            log.debug("GetAll by ADMIN");
+            page = aliasCBURepository.findAll(pageable);
+        } else {
+            log.debug("GetAll by USER");
+            page = aliasCBURepository.findByUserLogin(SecurityUtils.getCurrentUserLogin(), pageable);
+        }
+
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/alias-cbus");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
