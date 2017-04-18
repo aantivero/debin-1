@@ -1,5 +1,6 @@
 package com.aantivero.debin1.web.rest;
 
+import com.aantivero.debin1.repository.SucursalRepository;
 import com.codahale.metrics.annotation.Timed;
 import com.aantivero.debin1.domain.Banco;
 
@@ -33,11 +34,14 @@ public class BancoResource {
     private final Logger log = LoggerFactory.getLogger(BancoResource.class);
 
     private static final String ENTITY_NAME = "banco";
-        
+
     private final BancoRepository bancoRepository;
 
-    public BancoResource(BancoRepository bancoRepository) {
+    private final SucursalRepository sucursalRepository;
+
+    public BancoResource(BancoRepository bancoRepository, SucursalRepository sucursalRepository) {
         this.bancoRepository = bancoRepository;
+        this.sucursalRepository = sucursalRepository;
     }
 
     /**
@@ -108,6 +112,7 @@ public class BancoResource {
     public ResponseEntity<Banco> getBanco(@PathVariable Long id) {
         log.debug("REST request to get Banco : {}", id);
         Banco banco = bancoRepository.findOne(id);
+        banco.setSucursals(sucursalRepository.findAllByBanco(banco));
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(banco));
     }
 

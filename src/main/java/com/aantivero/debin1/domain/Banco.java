@@ -35,7 +35,6 @@ public class Banco implements Serializable {
     private String codigo;
 
     @OneToMany(mappedBy = "banco")
-    @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Sucursal> sucursals = new HashSet<>();
 
