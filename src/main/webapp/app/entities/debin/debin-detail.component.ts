@@ -26,14 +26,14 @@ export class DebinDetailComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.subscription = this.route.params.subscribe(params => {
+        this.subscription = this.route.params.subscribe((params) => {
             this.load(params['id']);
         });
         this.registerChangeInDebins();
     }
 
-    load (id) {
-        this.debinService.find(id).subscribe(debin => {
+    load(id) {
+        this.debinService.find(id).subscribe((debin) => {
             this.debin = debin;
         });
     }
@@ -47,7 +47,6 @@ export class DebinDetailComponent implements OnInit, OnDestroy {
     }
 
     registerChangeInDebins() {
-        this.eventSubscriber = this.eventManager.subscribe('debinListModification', response => this.load(this.debin.id));
+        this.eventSubscriber = this.eventManager.subscribe('debinListModification', (response) => this.load(this.debin.id));
     }
-
 }

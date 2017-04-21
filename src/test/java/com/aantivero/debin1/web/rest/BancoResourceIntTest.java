@@ -4,6 +4,7 @@ import com.aantivero.debin1.Debin1App;
 
 import com.aantivero.debin1.domain.Banco;
 import com.aantivero.debin1.repository.BancoRepository;
+import com.aantivero.debin1.repository.SucursalRepository;
 import com.aantivero.debin1.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
@@ -47,6 +48,9 @@ public class BancoResourceIntTest {
     private BancoRepository bancoRepository;
 
     @Autowired
+    private SucursalRepository sucursalRepository;
+
+    @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
 
     @Autowired
@@ -65,7 +69,7 @@ public class BancoResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        BancoResource bancoResource = new BancoResource(bancoRepository);
+        BancoResource bancoResource = new BancoResource(bancoRepository, sucursalRepository);
         this.restBancoMockMvc = MockMvcBuilders.standaloneSetup(bancoResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)

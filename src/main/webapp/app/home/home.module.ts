@@ -5,7 +5,6 @@ import { Debin1SharedModule } from '../shared';
 
 import { HOME_ROUTE, HomeComponent } from './';
 
-
 @NgModule({
     imports: [
         Debin1SharedModule,

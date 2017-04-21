@@ -10,13 +10,9 @@ import { LoginModalService } from '../../shared';
 })
 export class InfoComponent implements OnInit, AfterViewInit {
     modalRef: NgbModalRef;
-
-
-  constructor(
-    private loginModalService: LoginModalService,
-    private languageService: JhiLanguageService) {
+  constructor(private loginModalService: LoginModalService, private languageService: JhiLanguageService) {
       this.languageService.setLocations(['info']);
-   }
+  }
 
   ngOnInit() {
   }

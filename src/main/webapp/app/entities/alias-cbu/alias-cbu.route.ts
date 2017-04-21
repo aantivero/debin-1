@@ -11,7 +11,6 @@ import { AliasCBUDeletePopupComponent } from './alias-cbu-delete-dialog.componen
 
 import { Principal } from '../../shared';
 
-
 export const aliasCBURoute: Routes = [
   {
     path: 'alias-cbu',

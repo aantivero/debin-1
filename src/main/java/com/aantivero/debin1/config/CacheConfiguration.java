@@ -41,11 +41,11 @@ public class CacheConfiguration {
             cm.createCache(com.aantivero.debin1.domain.Authority.class.getName(), jcacheConfiguration);
             cm.createCache(com.aantivero.debin1.domain.User.class.getName() + ".authorities", jcacheConfiguration);
             cm.createCache(com.aantivero.debin1.domain.AliasCBU.class.getName(), jcacheConfiguration);
+            cm.createCache(com.aantivero.debin1.domain.AliasCBU.class.getName() + ".debinpagadors", jcacheConfiguration);
+            cm.createCache(com.aantivero.debin1.domain.AliasCBU.class.getName() + ".debincobradors", jcacheConfiguration);
             cm.createCache(com.aantivero.debin1.domain.Banco.class.getName(), jcacheConfiguration);
             cm.createCache(com.aantivero.debin1.domain.Banco.class.getName() + ".sucursals", jcacheConfiguration);
             cm.createCache(com.aantivero.debin1.domain.Sucursal.class.getName(), jcacheConfiguration);
-            cm.createCache(com.aantivero.debin1.domain.AliasCBU.class.getName() + ".debinpagadors", jcacheConfiguration);
-            cm.createCache(com.aantivero.debin1.domain.AliasCBU.class.getName() + ".debincobradors", jcacheConfiguration);
             cm.createCache(com.aantivero.debin1.domain.Debin.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };

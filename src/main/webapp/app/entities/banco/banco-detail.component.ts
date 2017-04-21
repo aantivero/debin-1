@@ -26,14 +26,14 @@ export class BancoDetailComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.subscription = this.route.params.subscribe(params => {
+        this.subscription = this.route.params.subscribe((params) => {
             this.load(params['id']);
         });
         this.registerChangeInBancos();
     }
 
-    load (id) {
-        this.bancoService.find(id).subscribe(banco => {
+    load(id) {
+        this.bancoService.find(id).subscribe((banco) => {
             this.banco = banco;
         });
     }
@@ -47,7 +47,6 @@ export class BancoDetailComponent implements OnInit, OnDestroy {
     }
 
     registerChangeInBancos() {
-        this.eventSubscriber = this.eventManager.subscribe('bancoListModification', response => this.load(this.banco.id));
+        this.eventSubscriber = this.eventManager.subscribe('bancoListModification', (response) => this.load(this.banco.id));
     }
-
 }

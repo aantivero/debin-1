@@ -25,12 +25,12 @@ export class DebinDeleteDialogComponent {
         this.jhiLanguageService.setLocations(['debin']);
     }
 
-    clear () {
+    clear() {
         this.activeModal.dismiss('cancel');
     }
 
-    confirmDelete (id: number) {
-        this.debinService.delete(id).subscribe(response => {
+    confirmDelete(id: number) {
+        this.debinService.delete(id).subscribe((response) => {
             this.eventManager.broadcast({
                 name: 'debinListModification',
                 content: 'Deleted an debin'
@@ -49,13 +49,13 @@ export class DebinDeletePopupComponent implements OnInit, OnDestroy {
     modalRef: NgbModalRef;
     routeSub: any;
 
-    constructor (
+    constructor(
         private route: ActivatedRoute,
         private debinPopupService: DebinPopupService
     ) {}
 
     ngOnInit() {
-        this.routeSub = this.route.params.subscribe(params => {
+        this.routeSub = this.route.params.subscribe((params) => {
             this.modalRef = this.debinPopupService
                 .open(DebinDeleteDialogComponent, params['id']);
         });

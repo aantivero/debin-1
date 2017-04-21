@@ -38,11 +38,11 @@ export class DebinDialogComponent implements OnInit {
         this.aliasCBUService.query().subscribe(
             (res: Response) => { this.aliascbus = res.json(); }, (res: Response) => this.onError(res.json()));
     }
-    clear () {
+    clear() {
         this.activeModal.dismiss('cancel');
     }
 
-    save () {
+    save() {
         this.isSaving = true;
         if (this.debin.id !== undefined) {
             this.debinService.update(this.debin)
@@ -55,13 +55,13 @@ export class DebinDialogComponent implements OnInit {
         }
     }
 
-    private onSaveSuccess (result: Debin) {
+    private onSaveSuccess(result: Debin) {
         this.eventManager.broadcast({ name: 'debinListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);
     }
 
-    private onSaveError (error) {
+    private onSaveError(error) {
         try {
             error.json();
         } catch (exception) {
@@ -71,7 +71,7 @@ export class DebinDialogComponent implements OnInit {
         this.onError(error);
     }
 
-    private onError (error) {
+    private onError(error) {
         this.alertService.error(error.message, null, null);
     }
 
@@ -89,13 +89,13 @@ export class DebinPopupComponent implements OnInit, OnDestroy {
     modalRef: NgbModalRef;
     routeSub: any;
 
-    constructor (
+    constructor(
         private route: ActivatedRoute,
         private debinPopupService: DebinPopupService
     ) {}
 
     ngOnInit() {
-        this.routeSub = this.route.params.subscribe(params => {
+        this.routeSub = this.route.params.subscribe((params) => {
             if ( params['id'] ) {
                 this.modalRef = this.debinPopupService
                     .open(DebinDialogComponent, params['id']);

@@ -4,7 +4,7 @@ import {
     infoRoute
 } from './';
 
-let EXTRA_ROUTES = [
+const EXTRA_ROUTES = [
    infoRoute
 ];
 

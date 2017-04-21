@@ -38,11 +38,11 @@ export class SucursalDialogComponent implements OnInit {
         this.bancoService.query().subscribe(
             (res: Response) => { this.bancos = res.json(); }, (res: Response) => this.onError(res.json()));
     }
-    clear () {
+    clear() {
         this.activeModal.dismiss('cancel');
     }
 
-    save () {
+    save() {
         this.isSaving = true;
         if (this.sucursal.id !== undefined) {
             this.sucursalService.update(this.sucursal)
@@ -55,13 +55,13 @@ export class SucursalDialogComponent implements OnInit {
         }
     }
 
-    private onSaveSuccess (result: Sucursal) {
+    private onSaveSuccess(result: Sucursal) {
         this.eventManager.broadcast({ name: 'sucursalListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);
     }
 
-    private onSaveError (error) {
+    private onSaveError(error) {
         try {
             error.json();
         } catch (exception) {
@@ -71,7 +71,7 @@ export class SucursalDialogComponent implements OnInit {
         this.onError(error);
     }
 
-    private onError (error) {
+    private onError(error) {
         this.alertService.error(error.message, null, null);
     }
 
@@ -89,13 +89,13 @@ export class SucursalPopupComponent implements OnInit, OnDestroy {
     modalRef: NgbModalRef;
     routeSub: any;
 
-    constructor (
+    constructor(
         private route: ActivatedRoute,
         private sucursalPopupService: SucursalPopupService
     ) {}
 
     ngOnInit() {
-        this.routeSub = this.route.params.subscribe(params => {
+        this.routeSub = this.route.params.subscribe((params) => {
             if ( params['id'] ) {
                 this.modalRef = this.sucursalPopupService
                     .open(SucursalDialogComponent, params['id']);

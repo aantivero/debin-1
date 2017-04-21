@@ -26,14 +26,14 @@ export class SucursalDetailComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.subscription = this.route.params.subscribe(params => {
+        this.subscription = this.route.params.subscribe((params) => {
             this.load(params['id']);
         });
         this.registerChangeInSucursals();
     }
 
-    load (id) {
-        this.sucursalService.find(id).subscribe(sucursal => {
+    load(id) {
+        this.sucursalService.find(id).subscribe((sucursal) => {
             this.sucursal = sucursal;
         });
     }
@@ -47,7 +47,6 @@ export class SucursalDetailComponent implements OnInit, OnDestroy {
     }
 
     registerChangeInSucursals() {
-        this.eventSubscriber = this.eventManager.subscribe('sucursalListModification', response => this.load(this.sucursal.id));
+        this.eventSubscriber = this.eventManager.subscribe('sucursalListModification', (response) => this.load(this.sucursal.id));
     }
-
 }

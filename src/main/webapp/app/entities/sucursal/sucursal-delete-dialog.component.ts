@@ -25,12 +25,12 @@ export class SucursalDeleteDialogComponent {
         this.jhiLanguageService.setLocations(['sucursal']);
     }
 
-    clear () {
+    clear() {
         this.activeModal.dismiss('cancel');
     }
 
-    confirmDelete (id: number) {
-        this.sucursalService.delete(id).subscribe(response => {
+    confirmDelete(id: number) {
+        this.sucursalService.delete(id).subscribe((response) => {
             this.eventManager.broadcast({
                 name: 'sucursalListModification',
                 content: 'Deleted an sucursal'
@@ -49,13 +49,13 @@ export class SucursalDeletePopupComponent implements OnInit, OnDestroy {
     modalRef: NgbModalRef;
     routeSub: any;
 
-    constructor (
+    constructor(
         private route: ActivatedRoute,
         private sucursalPopupService: SucursalPopupService
     ) {}
 
     ngOnInit() {
-        this.routeSub = this.route.params.subscribe(params => {
+        this.routeSub = this.route.params.subscribe((params) => {
             this.modalRef = this.sucursalPopupService
                 .open(SucursalDeleteDialogComponent, params['id']);
         });

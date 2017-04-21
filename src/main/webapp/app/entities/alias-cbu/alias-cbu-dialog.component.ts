@@ -50,11 +50,11 @@ export class AliasCBUDialogComponent implements OnInit {
         this.userService.query().subscribe(
             (res: Response) => { this.users = res.json(); }, (res: Response) => this.onError(res.json()));
     }
-    clear () {
+    clear() {
         this.activeModal.dismiss('cancel');
     }
 
-    save () {
+    save() {
         this.isSaving = true;
         if (this.aliasCBU.id !== undefined) {
             this.aliasCBUService.update(this.aliasCBU)
@@ -67,13 +67,13 @@ export class AliasCBUDialogComponent implements OnInit {
         }
     }
 
-    private onSaveSuccess (result: AliasCBU) {
+    private onSaveSuccess(result: AliasCBU) {
         this.eventManager.broadcast({ name: 'aliasCBUListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);
     }
 
-    private onSaveError (error) {
+    private onSaveError(error) {
         try {
             error.json();
         } catch (exception) {
@@ -83,7 +83,7 @@ export class AliasCBUDialogComponent implements OnInit {
         this.onError(error);
     }
 
-    private onError (error) {
+    private onError(error) {
         this.alertService.error(error.message, null, null);
     }
 
@@ -109,13 +109,13 @@ export class AliasCBUPopupComponent implements OnInit, OnDestroy {
     modalRef: NgbModalRef;
     routeSub: any;
 
-    constructor (
+    constructor(
         private route: ActivatedRoute,
         private aliasCBUPopupService: AliasCBUPopupService
     ) {}
 
     ngOnInit() {
-        this.routeSub = this.route.params.subscribe(params => {
+        this.routeSub = this.route.params.subscribe((params) => {
             if ( params['id'] ) {
                 this.modalRef = this.aliasCBUPopupService
                     .open(AliasCBUDialogComponent, params['id']);

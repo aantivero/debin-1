@@ -3,7 +3,6 @@ import { RouterModule } from '@angular/router';
 
 import { Debin1SharedModule } from '../../shared';
 import { Debin1AdminModule } from '../../admin/admin.module';
-
 import {
     AliasCBUService,
     AliasCBUPopupService,
@@ -17,7 +16,7 @@ import {
     aliasCBUPopupRoute,
 } from './';
 
-let ENTITY_STATES = [
+const ENTITY_STATES = [
     ...aliasCBURoute,
     ...aliasCBUPopupRoute,
 ];

@@ -25,12 +25,12 @@ export class AliasCBUDeleteDialogComponent {
         this.jhiLanguageService.setLocations(['aliasCBU', 'moneda']);
     }
 
-    clear () {
+    clear() {
         this.activeModal.dismiss('cancel');
     }
 
-    confirmDelete (id: number) {
-        this.aliasCBUService.delete(id).subscribe(response => {
+    confirmDelete(id: number) {
+        this.aliasCBUService.delete(id).subscribe((response) => {
             this.eventManager.broadcast({
                 name: 'aliasCBUListModification',
                 content: 'Deleted an aliasCBU'
@@ -49,13 +49,13 @@ export class AliasCBUDeletePopupComponent implements OnInit, OnDestroy {
     modalRef: NgbModalRef;
     routeSub: any;
 
-    constructor (
+    constructor(
         private route: ActivatedRoute,
         private aliasCBUPopupService: AliasCBUPopupService
     ) {}
 
     ngOnInit() {
-        this.routeSub = this.route.params.subscribe(params => {
+        this.routeSub = this.route.params.subscribe((params) => {
             this.modalRef = this.aliasCBUPopupService
                 .open(AliasCBUDeleteDialogComponent, params['id']);
         });

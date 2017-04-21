@@ -30,20 +30,21 @@ export class JhiTrackerService {
         this.listener = this.createListener();
     }
 
-    connect () {
+    connect() {
         if (this.connectedPromise === null) {
           this.connection = this.createConnection();
         }
         // building absolute path so that websocket doesn't fail when deploying with a context path
         const loc = this.$window.nativeWindow.location;
-        let url = '//' + loc.host + loc.pathname + 'websocket/tracker';
+        let url;
+        url = '//' + loc.host + loc.pathname + 'websocket/tracker';
         const authToken = this.authServerProvider.getToken();
         if (authToken) {
             url += '?access_token=' + authToken;
         }
         const socket = new SockJS(url);
         this.stompClient = Stomp.over(socket);
-        let headers = {};
+        const headers = {};
         this.stompClient.connect(headers, () => {
             this.connectedPromise('success');
             this.connectedPromise = null;
@@ -59,7 +60,7 @@ export class JhiTrackerService {
         });
     }
 
-    disconnect () {
+    disconnect() {
         if (this.stompClient !== null) {
             this.stompClient.disconnect();
             this.stompClient = null;
@@ -71,7 +72,7 @@ export class JhiTrackerService {
         this.alreadyConnectedOnce = false;
     }
 
-    receive () {
+    receive() {
         return this.listener;
     }
 
@@ -85,15 +86,15 @@ export class JhiTrackerService {
         }
     }
 
-    subscribe () {
+    subscribe() {
         this.connection.then(() => {
-            this.subscriber = this.stompClient.subscribe('/topic/tracker', data => {
+            this.subscriber = this.stompClient.subscribe('/topic/tracker', (data) => {
                 this.listenerObserver.next(JSON.parse(data.body));
             });
         });
     }
 
-    unsubscribe () {
+    unsubscribe() {
         if (this.subscriber !== null) {
             this.subscriber.unsubscribe();
         }
@@ -101,7 +102,7 @@ export class JhiTrackerService {
     }
 
     private createListener(): Observable<any> {
-        return new Observable(observer => {
+        return new Observable((observer) => {
             this.listenerObserver = observer;
         });
     }

@@ -26,14 +26,14 @@ export class AliasCBUDetailComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.subscription = this.route.params.subscribe(params => {
+        this.subscription = this.route.params.subscribe((params) => {
             this.load(params['id']);
         });
         this.registerChangeInAliasCBUS();
     }
 
-    load (id) {
-        this.aliasCBUService.find(id).subscribe(aliasCBU => {
+    load(id) {
+        this.aliasCBUService.find(id).subscribe((aliasCBU) => {
             this.aliasCBU = aliasCBU;
         });
     }
@@ -47,7 +47,6 @@ export class AliasCBUDetailComponent implements OnInit, OnDestroy {
     }
 
     registerChangeInAliasCBUS() {
-        this.eventSubscriber = this.eventManager.subscribe('aliasCBUListModification', response => this.load(this.aliasCBU.id));
+        this.eventSubscriber = this.eventManager.subscribe('aliasCBUListModification', (response) => this.load(this.aliasCBU.id));
     }
-
 }

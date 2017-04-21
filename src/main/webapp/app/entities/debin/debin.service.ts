@@ -12,7 +12,7 @@ export class DebinService {
     constructor(private http: Http, private dateUtils: DateUtils) { }
 
     create(debin: Debin): Observable<Debin> {
-        let copy: Debin = Object.assign({}, debin);
+        const copy: Debin = Object.assign({}, debin);
         copy.desde = this.dateUtils.toDate(debin.desde);
         copy.hasta = this.dateUtils.toDate(debin.hasta);
         return this.http.post(this.resourceUrl, copy).map((res: Response) => {
@@ -21,7 +21,7 @@ export class DebinService {
     }
 
     update(debin: Debin): Observable<Debin> {
-        let copy: Debin = Object.assign({}, debin);
+        const copy: Debin = Object.assign({}, debin);
 
         copy.desde = this.dateUtils.toDate(debin.desde);
 
@@ -33,7 +33,7 @@ export class DebinService {
 
     find(id: number): Observable<Debin> {
         return this.http.get(`${this.resourceUrl}/${id}`).map((res: Response) => {
-            let jsonResponse = res.json();
+            const jsonResponse = res.json();
             jsonResponse.desde = this.dateUtils
                 .convertDateTimeFromServer(jsonResponse.desde);
             jsonResponse.hasta = this.dateUtils
@@ -43,7 +43,7 @@ export class DebinService {
     }
 
     query(req?: any): Observable<Response> {
-        let options = this.createRequestOption(req);
+        const options = this.createRequestOption(req);
         return this.http.get(this.resourceUrl, options)
             .map((res: any) => this.convertResponse(res))
         ;
@@ -53,9 +53,8 @@ export class DebinService {
         return this.http.delete(`${this.resourceUrl}/${id}`);
     }
 
-
     private convertResponse(res: any): any {
-        let jsonResponse = res.json();
+        const jsonResponse = res.json();
         for (let i = 0; i < jsonResponse.length; i++) {
             jsonResponse[i].desde = this.dateUtils
                 .convertDateTimeFromServer(jsonResponse[i].desde);
@@ -67,9 +66,9 @@ export class DebinService {
     }
 
     private createRequestOption(req?: any): BaseRequestOptions {
-        let options: BaseRequestOptions = new BaseRequestOptions();
+        const options: BaseRequestOptions = new BaseRequestOptions();
         if (req) {
-            let params: URLSearchParams = new URLSearchParams();
+            const params: URLSearchParams = new URLSearchParams();
             params.set('page', req.page);
             params.set('size', req.size);
             if (req.sort) {

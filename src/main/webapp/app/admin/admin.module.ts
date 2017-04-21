@@ -31,7 +31,6 @@ import {
     UserModalService
 } from './';
 
-
 @NgModule({
     imports: [
         Debin1SharedModule,

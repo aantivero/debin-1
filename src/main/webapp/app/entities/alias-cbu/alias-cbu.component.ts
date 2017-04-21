@@ -45,7 +45,7 @@ export class AliasCBUComponent implements OnInit, OnDestroy {
         this.jhiLanguageService.setLocations(['aliasCBU', 'moneda']);
     }
 
-    loadAll () {
+    loadAll() {
         this.aliasCBUService.query({
             page: this.page,
             size: this.itemsPerPage,
@@ -56,7 +56,7 @@ export class AliasCBUComponent implements OnInit, OnDestroy {
         );
     }
 
-    reset () {
+    reset() {
         this.page = 0;
         this.aliasCBUS = [];
         this.loadAll();
@@ -78,18 +78,15 @@ export class AliasCBUComponent implements OnInit, OnDestroy {
         this.eventManager.destroy(this.eventSubscriber);
     }
 
-    trackId (index: number, item: AliasCBU) {
+    trackId(index: number, item: AliasCBU) {
         return item.id;
     }
-
-
-
     registerChangeInAliasCBUS() {
         this.eventSubscriber = this.eventManager.subscribe('aliasCBUListModification', (response) => this.reset());
     }
 
-    sort () {
-        let result = [this.predicate + ',' + (this.reverse ? 'asc' : 'desc')];
+    sort() {
+        const result = [this.predicate + ',' + (this.reverse ? 'asc' : 'desc')];
         if (this.predicate !== 'id') {
             result.push('id');
         }
@@ -104,7 +101,7 @@ export class AliasCBUComponent implements OnInit, OnDestroy {
         }
     }
 
-    private onError (error) {
+    private onError(error) {
         this.alertService.error(error.message, null, null);
     }
 }
