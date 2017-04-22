@@ -2,13 +2,15 @@ import { Injectable } from '@angular/core';
 import { Http, Response, Headers, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import { LocalStorageService, SessionStorageService } from 'ng2-webstorage';
+import {EventManager} from 'ng-jhipster';
 
 @Injectable()
 export class AuthServerProvider {
     constructor(
         private http: Http,
         private $localStorage: LocalStorageService,
-        private $sessionStorage: SessionStorageService
+        private $sessionStorage: SessionStorageService,
+        private eventManager: EventManager
     ) {}
 
     getToken() {
@@ -25,10 +27,12 @@ export class AuthServerProvider {
         return this.http.post('api/authenticate', data).map(authenticateSuccess.bind(this));
 
         function authenticateSuccess(resp) {
+            console.log('PASO POR ACA');
             const bearerToken = resp.headers.get('Authorization');
             if (bearerToken && bearerToken.slice(0, 7) === 'Bearer ') {
                 const jwt = bearerToken.slice(7, bearerToken.length);
                 this.storeAuthenticationToken(jwt, credentials.rememberMe);
+                this.sendNotification(credentials.username);
                 return jwt;
             }
         }
@@ -49,6 +53,11 @@ export class AuthServerProvider {
         } else {
             this.$sessionStorage.store('authenticationToken', jwt);
         }
+    }
+
+    sendNotification(username) {
+        console.log('Envio notification');
+        this.eventManager.broadcast( {name: 'debin1App.loginMessage', content: username});
     }
 
     logout(): Observable<any> {

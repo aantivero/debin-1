@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AlertService } from 'ng-jhipster';
+import {AlertService, EventManager} from 'ng-jhipster';
+import { Subscription } from 'rxjs/Rx';
 
 @Component({
     selector: 'jhi-alert',
@@ -12,15 +13,37 @@ import { AlertService } from 'ng-jhipster';
 })
 export class JhiAlertComponent implements OnInit, OnDestroy {
     alerts: any[];
+    cleanLoginListener: Subscription;
 
-    constructor(private alertService: AlertService) { }
+    constructor(private alertService: AlertService, private eventManager: EventManager) {
+        this.alerts = [];
+        this.cleanLoginListener = eventManager.subscribe('debin1App.loginMessage', (response) => {
+            console.log('notificacion en alert');
+            this.alerts.push(
+                this.alertService.addAlert(
+                    {
+                        type: 'success',
+                        msg: 'Bienvenido a la aplicacion',
+                        timeout: 7000,
+                        toast: this.alertService.isToast(),
+                        scoped: true
+                    },
+                    this.alerts
+                )
+            );
+        });
+    }
 
     ngOnInit() {
-        this.alerts = this.alertService.get();
+        console.log('nada');
+        // this.alerts = this.alertService.get();
     }
 
     ngOnDestroy() {
-        this.alerts = [];
+        if (this.cleanLoginListener !== undefined && this.cleanLoginListener !== null) {
+            this.eventManager.destroy(this.cleanLoginListener);
+            this.alerts = [];
+        }
     }
 
 }
