@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs/Rx';
 @Component({
     selector: 'jhi-alert',
     template: `
-        <div class="alerts" role="alert">
+        <div class="alerts alert-info " role="alert">
             <div *ngFor="let alert of alerts" [ngClass]="{\'alert.position\': true, \'toast\': alert.toast}">
                 <ngb-alert [type]="alert.type" (close)="alert.close(alerts)"><pre [innerHTML]="alert.msg"></pre></ngb-alert>
             </div>
@@ -18,12 +18,16 @@ export class JhiAlertComponent implements OnInit, OnDestroy {
     constructor(private alertService: AlertService, private eventManager: EventManager) {
         this.alerts = [];
         this.cleanLoginListener = eventManager.subscribe('debin1App.loginMessage', (response) => {
-            console.log('notificacion en alert');
+            console.log('notificacion en alert', response);
+            console.log(response.content);
             this.alerts.push(
                 this.alertService.addAlert(
                     {
-                        type: 'success',
-                        msg: 'Bienvenido a la aplicacion',
+                        type: 'info',
+                        msg: 'mensajes.welcome',
+                        params: {
+                            user: response.content
+                        },
                         timeout: 7000,
                         toast: this.alertService.isToast(),
                         scoped: true

@@ -138,5 +138,8 @@
         "info": {
             "title": "Información"
         }
+    },
+    "mensajes": {
+        "welcome":"Bienvenido {{user}}, puede comenzar a operar."
     }
 }
